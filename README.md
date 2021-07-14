@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Assignment for Omhu - github API call
+Get a list of profiles from github. When you text and submit a valid username, you will see it in a list with the users name, company and a link to his homepage or blog.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## step 1 creating the application with Create-react-app, install TypeScript and design the app
+Delete unused code/files
+Create a UI
+Rename js-files tsx so to use TypeScript and run:
+- npm i --save-dev @types/react
+- npm i --save-dev @types/react-dom
 
-## Available Scripts
+I am using stateless components as it is recommended by Facebook.
 
-In the project directory, you can run:
+### My Solution contains four components:
 
-### `npm start`
+App
+-> Form
+-> CardList
+   -> Card
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+App
+Apps responsibility is to handle data with its state. It contains the CardList and the Form-component.
+This components state has information about the profiles and a function that adds new profiles to the state.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Form
+- Forms responsibility is to add new Cards to the CardList. 
+- Form uses the package axios to connect to the Github API. 
+- Form also handles errors showing an alert-message when something went wrong. 
 
-### `npm test`
+- It might be a good idea to make a seperate component to handle the API-call to make the Form app simpler, but I have kept it this way to keep it simple.
+- It would also be an improvement to prevent the App two show the same profile more than one time. It also throw an error.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+CardList
+- CardLists responsibility is to show a list of active Cards.
+- App (state) → CardList → Card
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Card
+- Cards responsibility is to show a persons name, blog and profile-image.
+- The Card gets its information this way:
+  App (state) → CardList → Card
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+All Components are seperated in their own files.
 
-### `npm run eject`
+## Step 2 Build a static version of the Application in React
+Styles
+I am using style={{}} syntax instead of ex. normal stylesheet or styled-components to keep things simple and focus on logik.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This approch is good if I need to condision my styles.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Step 3 call the API and using testdata developing the App
+npm install axios
+I am installing and using the extern package axios to call the API. The connection to Github is inside the Form component.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Step 4 Identify The Minimal (but complete) Representation Of UI State and identify Where The State shall Live
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The minimal UI State is an Array in the App-component with active profiles:
+const [profiles, setProfiles] = useState(startData);
+And
+The active username the User is writing in the input-field.
+const [username, setUsername] = useState('');
 
-### Analyzing the Bundle Size
+Testdata
+I am using this testdata while testing the application. 
+I found the data calling the github api.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+const startData = [ 
+{ 
+name: "Brian Faurskov", 
+avatar_url: "https://avatars.githubusercontent.com/u/17128138?v=4", 
+company: "faurskov.com"
+}, 
+{ 
+name: "Kevin Pelgrims", 
+avatar_url: "https://avatars.githubusercontent.com/u/1175963?v=4", 
+company: "Humu" 
+},
+]
 
-### Making a Progressive Web App
+I am using a hook called useState to handle the state.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Step 5: Add Inverse Data Flow
+- The function addNewProfile is drilled down from App → Form.
+- Data is going the other way to update the Apps state (profiles) with setProfiles.
 
-### Advanced Configuration
+## Step 6: Different forms of testing
+npm test
+Runs a simple build in testsystem in create-react-app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Installerer Storybook
+First I tried this commands
+npx -p @storybook/cli sb init
+npm run storybook
+But got an error and had to install TypeScript again.
+Then I found the documentation and used theese commands - and it worked fine:
+# Add Storybook: npx sb init
+# Starts Storybook in development mode npm run storybook
 
-### Deployment
+I also install reacts testing-library
+npm install --save-dev @testing-library/react
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
