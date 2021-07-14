@@ -1,7 +1,7 @@
 # omhu
 Omhu programming assignment
 
-Please goto the master branch to see my solution.
+Please go to the master branch to see my solution.
 
 Best regards
 
