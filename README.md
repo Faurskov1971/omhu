@@ -89,19 +89,23 @@ I am using a hook called useState to handle the state.
 - Data is going the other way to update the Apps state (profiles) with setProfiles.
 
 ## Step 6: Different forms of testing
-npm test
+I tried to use the testing inviroment and installed Storybook and investegated JEST. 
+
+- npm test
 Runs a simple build in testsystem in create-react-app
 
 Installerer Storybook
 First I tried this commands
-npx -p @storybook/cli sb init
-npm run storybook
+- npx -p @storybook/cli sb init
+- npm run storybook
 But got an error and had to install TypeScript again.
 Then I found the documentation and used theese commands - and it worked fine:
-# Add Storybook: npx sb init
-# Starts Storybook in development mode npm run storybook
+- Add Storybook: npx sb init
+- Starts Storybook in development mode npm run storybook
 
 I also install reacts testing-library
-npm install --save-dev @testing-library/react
+- npm install --save-dev @testing-library/react
+
+And took a course on Pluralsight about testing invironment. It all looks very interesting and the logik is easy to understand. I will look forward to become a test-wizard on the road :-)
 
 
