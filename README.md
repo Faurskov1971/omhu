@@ -4,9 +4,9 @@ See the solution here: https://faurskov.com/omhu/
 Get a list of profiles from github. When you text and submit a valid username, you will see it in a list with the users name, company and a link to his homepage or blog.
 
 ## step 1 creating the application with Create-react-app, install TypeScript and design the app
-Delete unused code/files
+Delete unused code/files.
 Create a UI
-Rename js-files tsx so to use TypeScript and run:
+Rename js-files to tsx (to invoke TypeScript) and run:
 - npm i --save-dev @types/react
 - npm i --save-dev @types/react-dom
 
