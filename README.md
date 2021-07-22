@@ -110,3 +110,74 @@ I also install reacts testing-library
 And took a course on Pluralsight about testing invironment. It all looks very interesting and the logik is easy to understand. I will look forward to become a test-wizard on the road :-)
 
 
+
+# * How the user experience (UX) could be improved
+# * Experience working with UI libraries (we use Material UI a lot)
+
+- I have addet a favicon
+- I have changed the title
+- I have moved the description
+
+- I have improved the user experience using Material UI
+- The app is now responsible (mobile friendly)
+
+## Project
+
+Installing Material UI and icons
+
+- npm install @material-ui/core
+- npm install @material-ui/icons
+    - or (import Button from '@material-ui/core/Button';)
+
+Using the Roboto-font from google (public index.html)
+- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+
+## Form
+
+I have changed button to Button from material to make it look nicer.
+
+-  onSubmit={handleSubmit}  —> onClick={handleSubmit}
+- Tjekking if the user has inserted a username before submitting (required only works with onSubmit) 
+
+I have imported a person icon and used it on the Button
+
+- import PersonIcon from '@material-ui/icons/Person';
+- startIcon={<PersonIcon />
+
+
+## App
+
+I have inserted margins with  Material UI
+- import Container from "@material-ui/core/Container";
+- Inserted <Container></Container> the App.tsx-file
+
+I have formatted a title with Typography
+- import Typography from "@material-ui/core/Typography";
+
+
+## Card
+- import { makeStyles } from "@material-ui/core/styles";
+I have imported makeStyles so I can make cleaner code by moving the CSS into a variable.
+
+- import CardStyle from "@material-ui/core/Card";
+- import CardContent from "@material-ui/core/CardContent";
+- import CardMedia from "@material-ui/core/CardMedia";
+
+I have imported these 3 core classes into the project to align the design.
+
+I have a conditional style so there is only a “read more”-link displayed if the user has a blog or a homepage attached to his profile
+- style={{display:person.blog ? 'block': 'none'}}
+
+
+## CardList
+
+I have inserted the cards in a grid
+- import Grid from "@material-ui/core/Grid";
+
+# Things to do better
+
+- Prevent the user from calling the same profile two times
+- Give a good respons if the user doesn’t exist
+- Delete a profile again (remove it from the state)
+
+
