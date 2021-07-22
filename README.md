@@ -16,8 +16,7 @@ I am using stateless components as it is recommended by Facebook.
 
 App
 - -> Form
-- -> CardList
--    -> Card
+- -> CardList -> Card
 
 App
 Apps responsibility is to handle data with its state. It contains the CardList and the Form-component.
